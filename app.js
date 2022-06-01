@@ -1,5 +1,13 @@
-let pages = [] // variabile pages che posso richiamare in tutte le finzione
+let pages = [] // variabile pages che posso richiamare in tutte le finzione 
 
+const worker = new Worker('./myWorker.js') // gli collego myworker, dovremo creare sistema di ricezione con lui; non devo più collegarlo sotto al 
+//                                            body di html
+
+worker.addEventListener('message', logMessageFromWorker)
+
+function logMessageFromWorker(message) { // creo cominicazone a due, worker può loggare message se riceve messaggio da app
+    console.log('Messaggio proveniente dal worker: ', message.data);
+}
 //  guardo quante pagine ho 
 function loadPages() {
     fetch("./pages.json") // locale
@@ -13,7 +21,7 @@ function displayPages(loadedPages) {
     const navMenu = document.getElementById('nav-menu'); // richiamo navmenu da html
 
     for (const page of pages) { // ciclo le pagine dal json
-        console.log(page); 
+        // console.log(page); 
         const a = document.createElement('a'); //   creo link html
         const node = document.createTextNode(page.name);  
         a.appendChild(node); // attacco il name al link
@@ -52,6 +60,11 @@ function changePage(hash) {
     const container = document.getElementById('page-container'); 
 
     container.innerHTML = selectedPage.html;
+} 
+
+function activateWorker() { 
+    // console.log('pippo'); 
+    worker.postMessage('ciao') // "ciao" sarà in .data
 }
 
 loadPages();

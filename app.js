@@ -1,4 +1,4 @@
-let pages = [] // variabile pages che posso richiamare in tutte le finzione 
+let pages = [] // variabile pages che posso richiamare in tutte le funzione 
 
 const worker = new Worker('./myWorker.js') // gli collego myworker, dovremo creare sistema di ricezione con lui; non devo più collegarlo sotto al 
 //                                            body di html

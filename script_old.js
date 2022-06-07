@@ -1,4 +1,4 @@
-// console.log(window.location.hash); //    estrae solo parte a partire da "#", "#" incluso; "hash" indica "#"  
+console.log(window.location.hash); //    estrae solo parte a partire da "#", "#" incluso; "hash" indica "#"  
 
 changePage(window.location.hash);
 
